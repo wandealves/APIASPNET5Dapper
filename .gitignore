@@ -1,3 +1,22 @@
+# dotnet
+
+/Store.Api/bin/
+/Store.Api/obj/
+
+/Store.Domain/bin/
+/Store.Domain/obj/
+
+/Store.Infra/bin/
+/Store.Infra/obj/
+
+/Store.Shared/bin/
+/Store.Shared/obj/
+
+/Store.Tests/bin/
+/Store.Tests/obj/
+
+
+
 # Logs
 logs
 *.log
