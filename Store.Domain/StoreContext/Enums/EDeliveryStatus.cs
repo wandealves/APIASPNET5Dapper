@@ -1,6 +1,6 @@
 namespace Store.Domain.StoreComtext.Enums
 {
-  public enum EDeleveryStatus
+  public enum EDeliveryStatus
   {
     Waiting = 1,
     Shipped = 2,

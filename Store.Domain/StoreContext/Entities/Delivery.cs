@@ -9,11 +9,21 @@ namespace Store.Domain.StoreComtext.Entities
     {
       EstimatedDeleveryDate = estimatedDeleveryDate;
       CreateDate = DateTime.Now;
-      Status = EDeleveryStatus.Waiting;
+      Status = EDeliveryStatus.Waiting;
     }
 
     public DateTime CreateDate { get; private set; }
     public DateTime EstimatedDeleveryDate { get; private set; }
-    public EDeleveryStatus Status { get; private set; }
+    public EDeliveryStatus Status { get; private set; }
+
+    public void Ship()
+    {
+      Status = EDeliveryStatus.Shipped;
+    }
+
+    public void Cancel()
+    {
+      Status = EDeliveryStatus.Canceled;
+    }
   }
 }
