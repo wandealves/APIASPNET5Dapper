@@ -1,6 +1,6 @@
 using System;
 
-namespace Store.Domain.StoreComtext
+namespace Store.Domain.StoreComtext.Entities
 {
   public class Product
   {

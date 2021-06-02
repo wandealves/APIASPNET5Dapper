@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Store.Domain.StoreComtext
+namespace Store.Domain.StoreComtext.Entities
 {
   public class Order
   {
@@ -13,5 +13,6 @@ namespace Store.Domain.StoreComtext
     public IList<Delivery> Deliveries { get; set; }
 
     public void Place() { }
+
   }
 }
