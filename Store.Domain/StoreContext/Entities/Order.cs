@@ -27,8 +27,12 @@ namespace Store.Domain.StoreComtext.Entities
     public IReadOnlyCollection<OrderItem> Items => _items.ToArray();
     public IReadOnlyCollection<Delivery> Deliveries => _deliveries.ToArray();
 
-    public void AddItem(OrderItem item)
+    public void AddItem(Product product, decimal quantity)
     {
+      if (quantity > product.QuantityOnHand)
+        AddNotification("OrderItem", $"Produto {product.Title} não tem quantiadde {quantity} em estoque");
+
+      var item = new OrderItem(product, quantity);
       _items.Add(item);
     }
 
