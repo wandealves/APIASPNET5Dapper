@@ -1,8 +1,9 @@
+using FluentValidator;
 using Store.Domain.StoreComtext.Enums;
 
 namespace Store.Domain.StoreComtext.Entities
 {
-  public class Address
+  public class Address : Notifiable
   {
     public Address(
       string street,
