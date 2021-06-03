@@ -11,7 +11,6 @@ namespace Store.Domain.StoreComtext.Entities
 
     public Customer(
       Name name,
-      string lastName,
       Document document,
       Email email,
       string phone)

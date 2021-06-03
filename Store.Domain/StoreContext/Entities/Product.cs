@@ -29,5 +29,10 @@ namespace Store.Domain.StoreComtext.Entities
     {
       return Title;
     }
+
+    public void DecreaseQuantity(decimal quantity)
+    {
+      QuantityOnHand -= quantity;
+    }
   }
 }

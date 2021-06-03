@@ -52,7 +52,7 @@ namespace Store.Domain.StoreComtext.Entities
     public void Ship()
     {
       var deliveries = new List<Delivery>();
-      deliveries.Add(new Delivery(DateTime.Now.AddDays(5)));
+      //deliveries.Add(new Delivery(DateTime.Now.AddDays(5)));
       var count = 1;
       foreach (var item in _items)
       {
