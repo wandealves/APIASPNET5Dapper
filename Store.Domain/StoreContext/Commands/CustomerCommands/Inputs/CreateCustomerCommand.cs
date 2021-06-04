@@ -21,7 +21,7 @@ namespace Store.Domain.StoreContext.Commands.CustomerCommands.Inputs
         .HasLen(Document, 11, "Document", "CPF inválido")
       );
 
-      return Valid();
+      return IsValid;
     }
   }
 }

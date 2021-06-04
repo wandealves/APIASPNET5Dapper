@@ -23,7 +23,7 @@ namespace Store.Domain.StoreContext.Commands.OrderCommands.Inputs
         .IsGreaterThan(OrderItems.Count, 0, "Item", "Nunhum item do pedido encontrado")
       );
 
-      return Valid();
+      return IsValid;
     }
   }
 
