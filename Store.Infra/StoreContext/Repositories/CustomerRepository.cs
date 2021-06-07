@@ -2,6 +2,7 @@ using System.Data;
 using System.Linq;
 using Dapper;
 using Store.Domain.StoreComtext.Entities;
+using Store.Domain.StoreContext.Queries;
 using Store.Domain.StoreContext.Repositories;
 using Store.Infra.StoreContext.DataContexts;
 
@@ -38,6 +39,17 @@ namespace Store.Infra.StoreContext.Repositories
               new { Email = email },
               commandType: CommandType.StoredProcedure)
           .FirstOrDefault();
+    }
+
+    public CustomerOrdersCountResult GetCustomerOrdersCount(string document)
+    {
+      return _context
+         .Connection
+         .Query<CustomerOrdersCountResult>(
+             "spGetCustomerOrdersCount",
+             new { Document = document },
+             commandType: CommandType.StoredProcedure)
+         .FirstOrDefault();
     }
 
     public void Save(Customer customer)
