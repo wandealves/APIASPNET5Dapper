@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Store.Domain.StoreComtext.Entities;
 using Store.Domain.StoreContext.Commands.CustomerCommands.Inputs;
+using Store.Domain.StoreContext.Commands.CustomerCommands.Outputs;
+using Store.Domain.StoreContext.Handlers;
 using Store.Domain.StoreContext.Queries;
 using Store.Domain.StoreContext.Repositories;
 
@@ -11,9 +13,11 @@ namespace Store.Api.Controllers
   public class CustomerController : Controller
   {
     private readonly ICustomerRepository _customerRepository;
-    public CustomerController(ICustomerRepository customerRepository)
+    private readonly CustomerHandler _handler;
+    public CustomerController(ICustomerRepository customerRepository, CustomerHandler handler)
     {
       _customerRepository = customerRepository;
+      _handler = handler;
     }
 
     [HttpGet]
@@ -40,9 +44,11 @@ namespace Store.Api.Controllers
 
     [HttpPost]
     [Route("customers")]
-    public Customer Post([FromBody] CreateCustomerCommand command)
+    public object Post([FromBody] CreateCustomerCommand command)
     {
-      return null;
+      var result = (CreateCustomerCommandResult)_handler.Handle(command);
+      if (_handler.Invalid) return BadRequest(_handler.Notifications);
+      return result;
     }
 
 
