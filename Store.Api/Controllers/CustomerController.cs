@@ -3,31 +3,39 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Store.Domain.StoreComtext.Entities;
 using Store.Domain.StoreContext.Commands.CustomerCommands.Inputs;
+using Store.Domain.StoreContext.Queries;
+using Store.Domain.StoreContext.Repositories;
 
 namespace Store.Api.Controllers
 {
   public class CustomerController : Controller
   {
+    private readonly ICustomerRepository _customerRepository;
+    public CustomerController(ICustomerRepository customerRepository)
+    {
+      _customerRepository = customerRepository;
+    }
+
     [HttpGet]
     [Route("customers")]
-    public List<Customer> Get()
+    public IEnumerable<ListCustomerQueryResult> Get()
     {
-      return new List<Customer>();
+      return _customerRepository.Get();
     }
 
     [HttpGet]
     [Route("customers/{id}")]
-    public List<Customer> GetById(Guid id)
+    public GetCustomerQueryResult GetById(Guid id)
     {
-      return null;
+      return _customerRepository.Get(id);
     }
 
 
     [HttpGet]
     [Route("customers/{id}/orders")]
-    public List<Order> GetOrders(Guid id)
+    public IEnumerable<ListCustomerOrdersQueryResult> GetOrders(Guid id)
     {
-      return null;
+      return _customerRepository.GetOrders(id);
     }
 
     [HttpPost]

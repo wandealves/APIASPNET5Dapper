@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using Dapper;
@@ -29,7 +31,6 @@ namespace Store.Infra.StoreContext.Repositories
           .FirstOrDefault();
     }
 
-
     public bool CheckEmail(string email)
     {
       return _context
@@ -50,6 +51,25 @@ namespace Store.Infra.StoreContext.Repositories
              new { Document = document },
              commandType: CommandType.StoredProcedure)
          .FirstOrDefault();
+    }
+
+    public IEnumerable<ListCustomerQueryResult> Get()
+    {
+      return _context.Connection
+      .Query<ListCustomerQueryResult>("select [Id], CONCAT([FirstName], ' ', [LastName]) AS Name,[Document], [Email] FROM Customer", new { });
+    }
+
+    public GetCustomerQueryResult Get(Guid id)
+    {
+      return _context.Connection
+      .Query<GetCustomerQueryResult>("select [Id], CONCAT([FirstName], ' ', [LastName]) AS Name,[Document], [Email] FROM Customer WHERE [Id]=@id", new { id })
+      .FirstOrDefault();
+    }
+
+    public IEnumerable<ListCustomerOrdersQueryResult> GetOrders(Guid id)
+    {
+      return _context.Connection
+      .Query<ListCustomerOrdersQueryResult>("", new { id });
     }
 
     public void Save(Customer customer)
